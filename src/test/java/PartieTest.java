@@ -5,6 +5,6 @@ public class PartieTest {
 
     public void partieMediocre()
     {
-        
+        Partie partie = new Partie();
     }
 }
