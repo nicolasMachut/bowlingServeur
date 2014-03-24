@@ -12,7 +12,7 @@ public class JoueurTest {
     @Before
     public void setup()
     {
-        joueur = new Joueur("Nicolas");
+        joueur = new Joueur();
     }
 
     @Test
