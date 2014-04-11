@@ -1,17 +1,20 @@
-public class Client {
-    public static void
-    main(String[] args)
-    {
-        int status = 0;
+package Thread;
+
+
+public class threadReceptionJoueur extends Thread {
+
+	public void run() {
+		this.setName("enfoiredethread");
+	    int status = 0;
         Ice.Communicator ic = null;
         try {
-            ic = Ice.Util.initialize(args);
-            Ice.ObjectPrx base = ic.stringToProxy("SimplePrinter:default -p 10020");
-            Demo.PrinterPrx printer = Demo.PrinterPrxHelper.checkedCast(base);
-            if (printer == null)
-                throw new Error("Invalid proxy");
-
-            printer.printString("Tu suces ?");
+            ic = Ice.Util.initialize();
+            Ice.ObjectAdapter adapter =
+                ic.createObjectAdapterWithEndpoints("receptionJoueurAdapter", "default -p 10020");
+            Ice.Object object = new threadReceptionJoueursI();
+            adapter.add(object, ic.stringToIdentity("receptionJoueur"));
+            adapter.activate();
+            ic.waitForShutdown();
         } catch (Ice.LocalException e) {
             e.printStackTrace();
             status = 1;
@@ -30,5 +33,5 @@ public class Client {
             }
         }
         System.exit(status);
-    }
+	}
 }
