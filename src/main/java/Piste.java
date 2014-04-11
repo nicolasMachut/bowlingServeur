@@ -17,8 +17,11 @@ public class Piste {
 
     }
 
-    public void NouvellePartie() {
-        this.libre = false;
+    public void NouvellePartie() throws Exception{
+        if(this.libre)
+            this.libre = false;
+        else
+            throw new Exception("La piste est déjà occupée.");
     }
 
     public int nombreDeJoueurs()

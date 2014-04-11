@@ -51,16 +51,42 @@ public class PisteTest {
     @Test
     public void testPisteOccupeApresCreation()
     {
-        this.piste.NouvellePartie();
+        try {
+            this.piste.NouvellePartie();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         boolean libre = this.piste.estLibre();
         assertFalse(libre);
     }
     @Test
     public void testPisteLibrePartieTerminee()
     {
-        this.piste.NouvellePartie();
+        try {
+            this.piste.NouvellePartie();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this.piste.CloturerPartie();
         boolean libre = this.piste.estLibre();
         assertTrue(libre);
+    }
+
+    @Test
+    public void testCreerPartieSurPisteOccupe()
+    {
+
+        try
+        {
+            bowling.getPistes()[1].NouvellePartie();
+            bowling.getPistes()[1].NouvellePartie();
+            fail("Erreur, une exception était attendue");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+
     }
 }
