@@ -76,4 +76,50 @@ public class JoueurTest {
         assertEquals(300, this.joueur.score());
     }
 
+    @Test
+    public void testDixiemeFrameSpare()
+    {
+        this.effectueLesLances(18, 1);
+        this.lanceUnSpare();
+        this.joueur.lance(4);
+        assertEquals(this.joueur.score(), 32);
+    }
+
+    @Test
+    public void testDixiemeFrameStrike()
+    {
+        this.effectueLesLances(18, 1);
+        this.lanceUnStrike();
+        this.effectueLesLances(2, 3);
+        assertEquals(this.joueur.score(), 34);
+    }
+
+    @Test
+    public void testPasPlusDeVingtLance()
+    {
+        this.effectueLesLances(20, 2);
+        this.joueur.lance(2);
+        assertEquals(this.joueur.score(),40);
+    }
+
+    @Test
+    public void testVingtUneEmeLanceAvecSpare()
+    {
+        this.effectueLesLances(18, 2);
+        this.lanceUnSpare();
+        this.joueur.lance(1);
+        assertEquals(this.joueur.score(), 47);
+    }
+
+    @Test
+    public void testVingtDeuxEmeLanceAvecStrike()
+    {
+        this.effectueLesLances(18, 2);
+        this.lanceUnStrike();
+        this.effectueLesLances(2, 2);
+        assertEquals(this.joueur.score(), 50);
+
+    }
+
+
 }

@@ -27,7 +27,7 @@ public class Piste {
     }
 
     public void ajoutDesJoueurs(List<Joueur> listeJoueur) throws Exception {
-       if (listeJoueur.size()>=6)
+       if (listeJoueur.size()>=Bowling.nombreDeJoueursParPartie)
        {
            throw new Exception("Trop de joueurs sur cette piste, 6 au maximum.");
        }

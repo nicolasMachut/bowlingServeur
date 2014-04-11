@@ -21,4 +21,9 @@ public class Bowling
         }
     }
 
+    public Piste[] getPistes()
+    {
+        return this.pistes;
+    }
+
 }

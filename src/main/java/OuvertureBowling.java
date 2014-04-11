@@ -5,6 +5,14 @@ public class OuvertureBowling {
 
     public static void main(String[] args) {
         Bowling bowling = new Bowling();
-        //Joueur
+
+
+
+        bowling.getPistes()[1].NouvellePartie();
+
+        for(int i = 0; i < bowling.getPistes().length; i++)
+        {
+            System.out.println("Piste n° "+ (i+1) +" : "+bowling.getPistes()[i].estLibre());
+        }
     }
 }

@@ -8,7 +8,7 @@ public class Server {
             ic = Ice.Util.initialize(args);
             Ice.ObjectAdapter adapter =
                 ic.createObjectAdapterWithEndpoints("SimplePrinterAdapter", "default -p 10020");
-            Ice.Object object = new PrinterI();
+            Ice.Object object = (Ice.Object) new PrinterI();
             adapter.add(object, ic.stringToIdentity("SimplePrinter"));
             adapter.activate();
             ic.waitForShutdown();
