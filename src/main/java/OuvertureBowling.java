@@ -18,9 +18,12 @@ public class OuvertureBowling {
 
         List<Joueur> equipe1 = new ArrayList<Joueur>();
         List<Joueur> equipe2 = new ArrayList<Joueur>();
+        //equipe1.add();
 
         fileAttente.add(equipe1);
         fileAttente.add(equipe2);
+
+
 
         try {
             bowling.getPistes()[1].NouvellePartie();
@@ -30,7 +33,10 @@ public class OuvertureBowling {
 
         for(int i = 0; i < bowling.getPistes().length; i++)
         {
-            System.out.println("Piste n° "+ (i+1) +" : "+bowling.getPistes()[i].estLibre());
+            System.out.println("Piste n° "+ (i+1) +" : "+bowling.getPistes()[i].estLibre()+bowling.getPistes()[i].getTempsAttente()+"min");
         }
+
+
+
     }
 }

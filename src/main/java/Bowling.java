@@ -21,9 +21,29 @@ public class Bowling
         }
     }
 
+
     public Piste[] getPistes()
     {
         return this.pistes;
     }
 
+    public int getMeilleurePiste() {
+        int nextPiste=this.pistes[0].getTempsAttente();
+
+        for(int nbPiste=0;nbPiste<this.pistes.length;nbPiste++)
+        {
+           if(this.pistes[nbPiste].estLibre())
+           {
+               return nbPiste;
+           }else
+           {
+               if(this.pistes[nbPiste].getTempsAttente()<nextPiste)
+               {
+                   nextPiste = this.pistes[nbPiste].getTempsAttente();
+               }
+           }
+
+        }
+        return nextPiste;
+    }
 }

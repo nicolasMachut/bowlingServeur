@@ -7,6 +7,7 @@ import java.util.List;
 public class Piste {
 
     private boolean libre;
+    private int tempsAttenteEnSeconde;
 
     private List<Joueur> joueurs;
 
@@ -14,6 +15,7 @@ public class Piste {
     {
         this.libre = true;
         this.joueurs = new ArrayList<Joueur>();
+        this.tempsAttenteEnSeconde = 0;
 
     }
 
@@ -36,6 +38,7 @@ public class Piste {
        }
 
        this.joueurs=listeJoueur;
+       this.tempsAttenteEnSeconde = listeJoueur.size() * (15*60);
 
     }
 
@@ -47,5 +50,24 @@ public class Piste {
 
     public void CloturerPartie() {
         this.libre = true;
+    }
+
+    public int getTempsAttente()
+    {
+        this.tempsAttenteEnSeconde = this.calculTempsAttente();
+        return this.tempsAttenteEnSeconde;
+    }
+
+    private int calculTempsAttente()
+    {
+        int total = 0;
+        for(int i  = 0; i < this.joueurs.size(); i++)
+        {
+            for(int j = 0; j < this.joueurs.get(i).getLanceCourant(); j++)
+            {
+                total += 5;
+            }
+        }
+        return (15*this.joueurs.size()*60) - total;
     }
 }

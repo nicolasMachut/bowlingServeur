@@ -19,6 +19,7 @@ public class Joueur {
 
     public void lance(int nombreDeQuille)
     {
+
         this.lances[lanceCourant++] = nombreDeQuille;
     }
 
@@ -87,4 +88,8 @@ public class Joueur {
         return this.lances[indexDeFrame+2];
     }
 
+    public int getLanceCourant()
+    {
+        return this.lanceCourant;
+    }
 }
