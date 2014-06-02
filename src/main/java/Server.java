@@ -7,9 +7,9 @@ public class Server {
         try {
             ic = Ice.Util.initialize(args);
             Ice.ObjectAdapter adapter =
-                ic.createObjectAdapterWithEndpoints("SimplePrinterAdapter", "default -p 10020");
+                ic.createObjectAdapterWithEndpoints("receptionJoueur", "default -p 10020");
             Ice.Object object = (Ice.Object) new PrinterI();
-            adapter.add(object, ic.stringToIdentity("SimplePrinter"));
+            adapter.add(object, ic.stringToIdentity("receptionJoueur"));
             adapter.activate();
             ic.waitForShutdown();
         } catch (Ice.LocalException e) {
