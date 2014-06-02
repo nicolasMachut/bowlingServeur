@@ -28,10 +28,10 @@ public final class listeJoueursHolder
     }
 
     public
-    listeJoueursHolder(JoueurSlice[] value)
+    listeJoueursHolder(String[] value)
     {
         this.value = value;
     }
 
-    public JoueurSlice[] value;
+    public String[] value;
 }
