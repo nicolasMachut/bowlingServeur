@@ -9,6 +9,7 @@ public class threadReceptionJoueur extends Thread {
         Ice.Communicator ic = null;
         try {
             ic = Ice.Util.initialize();
+
             Ice.ObjectAdapter adapter =
                 ic.createObjectAdapterWithEndpoints("receptionJoueurAdapter", "default -p 10020");
             Ice.Object object = new threadReceptionJoueursI();

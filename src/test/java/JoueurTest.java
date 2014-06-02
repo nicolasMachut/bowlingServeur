@@ -118,7 +118,20 @@ public class JoueurTest {
         this.lanceUnStrike();
         this.effectueLesLances(2, 2);
         assertEquals(this.joueur.score(), 50);
+    }
 
+    @Test
+    public void testJoueurJoueSonTourAuPremierTour()
+    {
+        this.joueur.jouerSonTour();
+        assertEquals(this.joueur.getLanceCourant(), 2);
+    }
+
+    @Test
+    public void testJoueurJoueSonToutEtEffectueUnStrike()
+    {
+        this.joueur.jouerSonTour();
+        assertEquals(2, this.joueur.getLanceCourant());
     }
 
 

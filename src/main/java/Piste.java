@@ -4,7 +4,7 @@ import java.util.List;
 /**
  * Created by nicolas on 23/03/14.
  */
-public class Piste {
+public class Piste extends Thread{
 
     private boolean libre;
     private int tempsAttenteEnSeconde;
@@ -21,9 +21,30 @@ public class Piste {
 
     public void NouvellePartie() throws Exception{
         if(this.libre)
+        {
             this.libre = false;
+            this.JouerPartie();
+        }
         else
             throw new Exception("La piste est déjà occupée.");
+    }
+
+    public void JouerPartie()
+    {
+        for(int i =0; i < 10; i++)
+        {
+        for(Joueur unJoueur : this.joueurs)
+        {
+                unJoueur.jouerSonTour();
+            }
+        }
+        for(Joueur unJoueur : this.joueurs)
+        {
+            System.out.println(unJoueur.getPseudo()+" "+unJoueur.score());
+        }
+
+        this.libre = true;
+        this.joueurs = null;
     }
 
     public int nombreDeJoueurs()
