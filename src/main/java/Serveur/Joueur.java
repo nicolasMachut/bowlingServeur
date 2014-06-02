@@ -95,4 +95,9 @@ public class Joueur {
     {
         return this.lanceCourant;
     }
+
+	public void jouerSonTour() {
+		// TODO Auto-generated method stub
+		
+	}
 }
