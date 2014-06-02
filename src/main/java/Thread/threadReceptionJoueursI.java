@@ -1,11 +1,19 @@
 package Thread;
 
+import java.util.List;
+
+import Ice.Current;
+import Serveur.Joueur;
 import receptionJoueurs.*;
 public class threadReceptionJoueursI extends _threadReceptionJoueursDisp {
 
-	public String inscriptionJoueur(JoueurSlice[] maListe, Ice.Current __current) {
+
+	public int inscriptionJoueur(String[] maListe, Current __current) {
 		// TODO Auto-generated method stub
-		return "Suces connasse";
+		return 0;
 	}
+
+	
+
 
 }
