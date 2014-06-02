@@ -22,12 +22,12 @@ package receptionJoueurs;
 
 public final class _threadReceptionJoueursDelD extends Ice._ObjectDelD implements _threadReceptionJoueursDel
 {
-    public String inscriptionJoueur(final JoueurSlice[] maListe, java.util.Map<String, String> __ctx, Ice.Instrumentation.InvocationObserver __observer)
+    public int inscriptionJoueur(final String[] maListe, java.util.Map<String, String> __ctx, Ice.Instrumentation.InvocationObserver __observer)
         throws IceInternal.LocalExceptionWrapper
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "inscriptionJoueur", Ice.OperationMode.Normal, __ctx);
-        final Ice.StringHolder __result = new Ice.StringHolder();
+        final Ice.IntHolder __result = new Ice.IntHolder();
         IceInternal.Direct __direct = null;
         try
         {

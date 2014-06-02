@@ -22,6 +22,6 @@ package receptionJoueurs;
 
 public interface _threadReceptionJoueursDel extends Ice._ObjectDel
 {
-    String inscriptionJoueur(JoueurSlice[] maListe, java.util.Map<String, String> __ctx, Ice.Instrumentation.InvocationObserver __obsv)
+    int inscriptionJoueur(String[] maListe, java.util.Map<String, String> __ctx, Ice.Instrumentation.InvocationObserver __obsv)
         throws IceInternal.LocalExceptionWrapper;
 }
