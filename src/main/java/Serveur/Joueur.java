@@ -1,6 +1,9 @@
 /**
  * Created by edouard on 14/03/14.
  */
+package Serveur;
+
+
 public class Joueur {
 
     private int[] lances = new int[21];

@@ -1,9 +1,12 @@
+package Serveur;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by nicolas on 23/03/14.
  */
+
 public class Piste {
 
     private boolean libre;

@@ -1,6 +1,7 @@
 /**
  * Created by nicolas on 23/03/14.
  */
+package Serveur;
 public class Bowling
 {
     public static final int nombreDeJoueursParPartie = 6;

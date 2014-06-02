@@ -1,3 +1,4 @@
+package Serveur;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -7,6 +8,7 @@ import Thread.threadReceptionJoueur;
 /**
  * Created by nicolas on 24/03/14.
  */
+
 public class OuvertureBowling {
 	
     public static void main(String[] args) {
