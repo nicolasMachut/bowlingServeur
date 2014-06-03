@@ -16,42 +16,44 @@ public class Joueur {
     public Joueur(String pseudo)
     {
         this.pseudo = pseudo;
+        for(int unIndex : this.lances)
+            unIndex=0;
     }
 
     public void lance(int nombreDeQuille)
     {
-        try {
+        /*try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-        this.lances[lanceCourant++] = nombreDeQuille;
-        System.out.println(this.pseudo +" Lance : A fait tombé "+nombreDeQuille+" quilles");
+        }*/
+        this.lances[lanceCourant] = nombreDeQuille;
+
+        System.out.println(this.pseudo +" Lance n° "+this.lanceCourant+" : A fait tombé "+nombreDeQuille+" quilles");
+
+            lanceCourant++;
     }
 
     public int score()
     {
         int score = 0;
-        int indexDeFrame = 0;
-        for(int frame = 0; frame < 10; frame++)
-        {
-            if(this.estUnStrikePourScore(indexDeFrame))
-            {
-                score += 10 + this.bonusDeStrike(indexDeFrame);
-                indexDeFrame++;
+
+        for(int frame = 0; frame <= 10; frame++) {
+            if (frame != 10) {
+                if (this.estUnStrikePourScore(frame)) {
+                    score += 10 + this.bonusDeStrike(frame);
+                } else {
+                    if (this.estUnSparePourScore(frame)) {
+                        score += 10 + bonusDeSpare(frame);
+
+                    } else {
+                        score += this.nombreDequilleTombeDansLaFrame(frame);
+                    }
+                }
             }
             else
             {
-                if(this.estUnSparePourScore(indexDeFrame))
-                {
-                    score += 10  + bonusDeSpare(indexDeFrame);
-                    indexDeFrame += 2;
-                }
-                else
-                {
-                    score += this.nombreDequilleTombeDansLaFrame(indexDeFrame);
-                    indexDeFrame += 2;
-                }
+                score += this.nombreDequilleTombeDansLaFrame(frame);
             }
         }
         return score;
@@ -59,7 +61,7 @@ public class Joueur {
 
     private boolean estUnSparePourScore(int indexDeFrame)
     {
-        if(lances[indexDeFrame] + lances[indexDeFrame+1] == 10)
+        if(lances[indexDeFrame*2] + lances[indexDeFrame*2+1] == 10)
         {
             return true;
         }
@@ -71,7 +73,7 @@ public class Joueur {
 
     private boolean estUnStrikePourScore(int indexDeFrame)
     {
-        if(lances[indexDeFrame] == 10)
+        if(lances[indexDeFrame*2] == 10)
             return true;
         else
             return false;
@@ -79,17 +81,38 @@ public class Joueur {
 
     private int nombreDequilleTombeDansLaFrame(int indexDeFrame)
     {
-        return this.lances[indexDeFrame] + this.lances[indexDeFrame+1];
+        int bonus = 0;
+        if (indexDeFrame==10)
+        {
+            bonus = this.lances[indexDeFrame*2];
+        }else
+        bonus = this.lances[indexDeFrame*2] + this.lances[indexDeFrame*2+1];
+
+        System.out.println("bonus nombreQuilleFrame "+indexDeFrame+" score : "+bonus);
+        return bonus;
     }
 
     private int bonusDeStrike(int indexDeFrame)
     {
-        return this.lances[indexDeFrame+1] + this.lances[indexDeFrame+2];
+        int indexDeFrameSuivante = indexDeFrame+1;
+        int bonus = 0;
+        if(indexDeFrame!=10)
+            if(indexDeFrame==9) {
+                bonus = this.lances[indexDeFrameSuivante * 2];
+                System.out.println("bonus pour le strike index 18 " +bonus);
+            }
+                else{
+                bonus = this.lances[indexDeFrameSuivante*2] + this.lances[indexDeFrameSuivante*2+1];
+            }
+
+        return bonus;
     }
 
     private int bonusDeSpare(int indexDeFrame)
     {
-        return this.lances[indexDeFrame+2];
+        int indexDeFrameSuivante = indexDeFrame +1;
+
+        return this.lances[indexDeFrameSuivante*2];
     }
 
     public int getLanceCourant()
@@ -100,56 +123,36 @@ public class Joueur {
     public void jouerSonTour() {
 
 
-        int random = this.randomQuilles(0);
+        int RandomQuillePremierLancé = this.randomQuilles(0);
         int random2 = 0;
-        this.lance(random);
-        if(this.lanceCourant < 20)
-        {
-            FrameClassique(random);
-        }
-        else
-        {
-            FrameTerminale(random);
-        }
+        this.lance(RandomQuillePremierLancé);
+
+        FrameClassique(RandomQuillePremierLancé);
+        if (this.lanceCourant==20 && this.estUnSparePourScore(9))
+         {
+           this.lance(this.randomQuilles(0));
+          }
+
+
     }
 
-    private void FrameTerminale(int random) {
-        if(!this.estUnStrike(random))
+    private void FrameClassique(int randomQuillePremierLancé) {
+        int randomQuilleSecondLancé;
+        if(this.estUnStrike(randomQuillePremierLancé))
         {
-            this.lance(random);
-            if(this.estUnSparePourScore(10))
+            if(this.lanceCourant==19)
             {
-                random = this.randomQuilles(random);
-                this.lance(random);
-                this.partiejoueurTerminee = true;
-            }
-            else
-            {
-                this.partiejoueurTerminee = true;
+
+                this.lance(this.randomQuilles(0));
+            }else {
+                this.lances[this.lanceCourant] = 0;
+                this.lanceCourant++;
             }
         }
         else
         {
-            int random2 = this.randomQuilles(random);
-            this.lance(random2);
-            int random3 = this.randomQuilles(0);
-            this.lance(random3);
-            this.partiejoueurTerminee = true;
-
-        }
-    }
-
-    private void FrameClassique(int random) {
-        int random2;
-        if(this.estUnStrike(random))
-        {
-            this.lances[this.lanceCourant] = 0;
-            this.lanceCourant++;
-        }
-        else
-        {
-            random2 = this.randomQuilles(random);
-            this.lance(random2);
+            randomQuilleSecondLancé = this.randomQuilles(randomQuillePremierLancé);
+            this.lance(randomQuilleSecondLancé);
         }
     }
 

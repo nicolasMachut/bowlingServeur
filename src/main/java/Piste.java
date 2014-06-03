@@ -40,7 +40,7 @@ public class Piste extends Thread{
         }
         for(Joueur unJoueur : this.joueurs)
         {
-            System.out.println(unJoueur.getPseudo()+" "+unJoueur.score());
+            System.out.println("score "+unJoueur.getPseudo()+" : "+unJoueur.score());
         }
 
         this.libre = true;

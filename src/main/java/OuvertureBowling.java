@@ -24,7 +24,6 @@ public class OuvertureBowling {
         Joueur joueur2 = new Joueur("Alex");
 
         equipe1.add(joueur);
-        equipe1.add(joueur2);
         List<Joueur> equipe2 = new ArrayList<Joueur>();
         //equipe1.add();
 
@@ -42,13 +41,5 @@ public class OuvertureBowling {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        /*for(int i = 0; i < bowling.getPistes().length; i++)
-        {
-            System.out.println("Piste n° "+ (i+1) +" : "+bowling.getPistes()[i].estLibre()+bowling.getPistes()[i].getTempsAttente()+"min");
-        }*/
-
-
-
     }
 }

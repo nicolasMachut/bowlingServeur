@@ -12,7 +12,7 @@ public class JoueurTest {
     @Before
     public void setup()
     {
-        joueur = new Joueur();
+        joueur = new Joueur("NICOLAS");
     }
 
     @Test
@@ -62,10 +62,11 @@ public class JoueurTest {
     @Test
     public void testUnStrike()
     {
-        this.lanceUnStrike();
-        this.joueur.lance(2);
-        this.joueur.lance(3);
-        this.effectueLesLances(16, 0);
+
+        this.joueur.lance(10);
+        this.joueur.lance(0);
+        this.joueur.lance(5);
+        this.effectueLesLances(17,0);
         assertEquals(20, this.joueur.score());
     }
 
@@ -79,19 +80,21 @@ public class JoueurTest {
     @Test
     public void testDixiemeFrameSpare()
     {
-        this.effectueLesLances(18, 1);
-        this.lanceUnSpare();
-        this.joueur.lance(4);
-        assertEquals(this.joueur.score(), 32);
+        this.effectueLesLances(18, 0);
+        this.joueur.lance(5);
+        this.joueur.lance(5);
+        this.joueur.lance(5);
+        assertEquals(this.joueur.score(), 20);
     }
 
     @Test
     public void testDixiemeFrameStrike()
     {
-        this.effectueLesLances(18, 1);
-        this.lanceUnStrike();
-        this.effectueLesLances(2, 3);
-        assertEquals(this.joueur.score(), 34);
+        this.effectueLesLances(18,0);
+        this.joueur.lance(10);
+        this.joueur.lance(0);
+        this.joueur.lance(8);
+        assertEquals(this.joueur.score(), 26);
     }
 
     @Test
@@ -114,7 +117,7 @@ public class JoueurTest {
     @Test
     public void testVingtDeuxEmeLanceAvecStrike()
     {
-        this.effectueLesLances(18, 2);
+        this.effectueLesLances(17, 2);
         this.lanceUnStrike();
         this.effectueLesLances(2, 2);
         assertEquals(this.joueur.score(), 50);
