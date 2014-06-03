@@ -23,33 +23,16 @@ package receptionJoueurs;
 public final class listeJoueursHelper
 {
     public static void
-    write(IceInternal.BasicStream __os, JoueurSlice[] __v)
+    write(IceInternal.BasicStream __os, String[] __v)
     {
-        if(__v == null)
-        {
-            __os.writeSize(0);
-        }
-        else
-        {
-            __os.writeSize(__v.length);
-            for(int __i0 = 0; __i0 < __v.length; __i0++)
-            {
-                __os.writeObject(__v[__i0]);
-            }
-        }
+        __os.writeStringSeq(__v);
     }
 
-    public static JoueurSlice[]
+    public static String[]
     read(IceInternal.BasicStream __is)
     {
-        JoueurSlice[] __v;
-        final int __len0 = __is.readAndCheckSeqSize(1);
-        final String __type0 = JoueurSlice.ice_staticId();
-        __v = new JoueurSlice[__len0];
-        for(int __i0 = 0; __i0 < __len0; __i0++)
-        {
-            __is.readObject(new IceInternal.SequencePatcher(__v, JoueurSlice.class, __type0, __i0));
-        }
+        String[] __v;
+        __v = __is.readStringSeq();
         return __v;
     }
 }

@@ -1,7 +1,6 @@
 module receptionJoueurs {
-	class JoueurSlice {};
-	sequence<JoueurSlice> listeJoueurs;
+	sequence<string> listeJoueurs;
     interface threadReceptionJoueurs {
-        string inscriptionJoueur(listeJoueurs maListe);
+        int inscriptionJoueur(listeJoueurs maListe);
     };
 };

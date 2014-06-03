@@ -1,7 +1,5 @@
 package ClientAndroid;
 
-import receptionJoueurs.JoueurSlice;
-
 public class demandeInscription {
 	public static void main(String[] args) {
 		int status = 0;
@@ -13,10 +11,11 @@ public class demandeInscription {
 			receptionJoueurs.threadReceptionJoueursPrx receptionJoueur = receptionJoueurs.threadReceptionJoueursPrxHelper.checkedCast(base);
 			if (receptionJoueur == null)
 				throw new Error("Invalid proxy");
-
-			JoueurSlice[] maListe = null;
 			
-			System.out.println(receptionJoueur.inscriptionJoueur(maListe));
+			String[] equipe = new String[]{"Johan","Edouard"};
+			
+			System.out.println(receptionJoueur.inscriptionJoueur(equipe));
+			
 		} catch (Ice.LocalException e) {
 			e.printStackTrace();
 			status = 1;

@@ -1,5 +1,8 @@
+
 import org.junit.Before;
 import org.junit.Test;
+
+import Serveur.Joueur;
 import static org.junit.Assert.*;
 
 /**

@@ -1,6 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import Serveur.Bowling;
+import Serveur.Joueur;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -22,5 +22,5 @@ package receptionJoueurs;
 
 public interface _threadReceptionJoueursOperationsNC
 {
-    String inscriptionJoueur(JoueurSlice[] maListe);
+    int inscriptionJoueur(String[] maListe);
 }

@@ -22,21 +22,21 @@ package receptionJoueurs;
 
 public interface threadReceptionJoueursPrx extends Ice.ObjectPrx
 {
-    public String inscriptionJoueur(JoueurSlice[] maListe);
+    public int inscriptionJoueur(String[] maListe);
 
-    public String inscriptionJoueur(JoueurSlice[] maListe, java.util.Map<String, String> __ctx);
+    public int inscriptionJoueur(String[] maListe, java.util.Map<String, String> __ctx);
 
-    public Ice.AsyncResult begin_inscriptionJoueur(JoueurSlice[] maListe);
+    public Ice.AsyncResult begin_inscriptionJoueur(String[] maListe);
 
-    public Ice.AsyncResult begin_inscriptionJoueur(JoueurSlice[] maListe, java.util.Map<String, String> __ctx);
+    public Ice.AsyncResult begin_inscriptionJoueur(String[] maListe, java.util.Map<String, String> __ctx);
 
-    public Ice.AsyncResult begin_inscriptionJoueur(JoueurSlice[] maListe, Ice.Callback __cb);
+    public Ice.AsyncResult begin_inscriptionJoueur(String[] maListe, Ice.Callback __cb);
 
-    public Ice.AsyncResult begin_inscriptionJoueur(JoueurSlice[] maListe, java.util.Map<String, String> __ctx, Ice.Callback __cb);
+    public Ice.AsyncResult begin_inscriptionJoueur(String[] maListe, java.util.Map<String, String> __ctx, Ice.Callback __cb);
 
-    public Ice.AsyncResult begin_inscriptionJoueur(JoueurSlice[] maListe, Callback_threadReceptionJoueurs_inscriptionJoueur __cb);
+    public Ice.AsyncResult begin_inscriptionJoueur(String[] maListe, Callback_threadReceptionJoueurs_inscriptionJoueur __cb);
 
-    public Ice.AsyncResult begin_inscriptionJoueur(JoueurSlice[] maListe, java.util.Map<String, String> __ctx, Callback_threadReceptionJoueurs_inscriptionJoueur __cb);
+    public Ice.AsyncResult begin_inscriptionJoueur(String[] maListe, java.util.Map<String, String> __ctx, Callback_threadReceptionJoueurs_inscriptionJoueur __cb);
 
-    public String end_inscriptionJoueur(Ice.AsyncResult __result);
+    public int end_inscriptionJoueur(Ice.AsyncResult __result);
 }

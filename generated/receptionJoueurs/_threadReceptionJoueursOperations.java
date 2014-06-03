@@ -22,5 +22,5 @@ package receptionJoueurs;
 
 public interface _threadReceptionJoueursOperations
 {
-    String inscriptionJoueur(JoueurSlice[] maListe, Ice.Current __current);
+    int inscriptionJoueur(String[] maListe, Ice.Current __current);
 }

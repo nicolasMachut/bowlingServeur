@@ -70,7 +70,7 @@ public abstract class _threadReceptionJoueursDisp extends Ice.ObjectImpl impleme
         return __ids[1];
     }
 
-    public final String inscriptionJoueur(JoueurSlice[] maListe)
+    public final int inscriptionJoueur(String[] maListe)
     {
         return inscriptionJoueur(maListe, null);
     }
@@ -79,13 +79,12 @@ public abstract class _threadReceptionJoueursDisp extends Ice.ObjectImpl impleme
     {
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         IceInternal.BasicStream __is = __inS.startReadParams();
-        JoueurSlice[] maListe;
+        String[] maListe;
         maListe = listeJoueursHelper.read(__is);
-        __is.readPendingObjects();
         __inS.endReadParams();
-        String __ret = __obj.inscriptionJoueur(maListe, __current);
+        int __ret = __obj.inscriptionJoueur(maListe, __current);
         IceInternal.BasicStream __os = __inS.__startWriteParams(Ice.FormatType.DefaultFormat);
-        __os.writeString(__ret);
+        __os.writeInt(__ret);
         __inS.__endWriteParams(true);
         return Ice.DispatchStatus.DispatchOK;
     }
