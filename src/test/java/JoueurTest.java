@@ -76,7 +76,7 @@ public class JoueurTest {
     @Test
     public void testPartieParfaite()
     {
-        this.effectueLesLances(12, 10);
+        this.effectueLesLances(10, 10);
         assertEquals(300, this.joueur.score());
     }
 
@@ -87,7 +87,7 @@ public class JoueurTest {
         this.joueur.lance(5);
         this.joueur.lance(5);
         this.joueur.lance(5);
-        assertEquals(this.joueur.score(), 20);
+        assertEquals(20, this.joueur.score());
     }
 
     @Test
@@ -95,9 +95,8 @@ public class JoueurTest {
     {
         this.effectueLesLances(18,0);
         this.joueur.lance(10);
-        this.joueur.lance(0);
         this.joueur.lance(8);
-        assertEquals(this.joueur.score(), 26);
+        assertEquals(26,this.joueur.score());
     }
 
     @Test
@@ -114,16 +113,7 @@ public class JoueurTest {
         this.effectueLesLances(18, 2);
         this.lanceUnSpare();
         this.joueur.lance(1);
-        assertEquals(this.joueur.score(), 47);
-    }
-
-    @Test
-    public void testVingtDeuxEmeLanceAvecStrike()
-    {
-        this.effectueLesLances(17, 2);
-        this.lanceUnStrike();
-        this.effectueLesLances(2, 2);
-        assertEquals(this.joueur.score(), 50);
+        assertEquals(48, this.joueur.score());
     }
 
     @Test
@@ -138,6 +128,54 @@ public class JoueurTest {
     {
         this.joueur.jouerSonTour();
         assertEquals(2, this.joueur.getLanceCourant());
+    }
+
+    @Test
+    public void testEstunSparePourScoreVrai()
+    {
+        this.effectueLesLances(2,5);
+        assertTrue(this.joueur.estUnSparePourScore(0));
+    }
+    @Test
+    public void testEstUnSparePourScoreFaux()
+    {
+        this.effectueLesLances(2,4);
+        assertFalse(this.joueur.estUnSparePourScore(0));
+    }
+
+    @Test
+    public void testEstUnStrikePourScoreVrai()
+    {
+        this.lanceUnStrike();
+        assertTrue(this.joueur.estUnStrikePourScore(0));
+    }
+    @Test
+    public void testEstUnStrikePourScoreFaux()
+    {
+        this.lanceUnStrike();
+        assertTrue(this.joueur.estUnStrikePourScore(0));
+    }
+
+    @Test
+    public void testRandomQuilles()
+    {
+        assertEquals(0, this.joueur.randomQuilles(10));
+    }
+
+    @Test
+    public void testEstUnStrike()
+    {
+        assertTrue(this.joueur.estUnStrike(10));
+    }
+    @Test
+    public void testEstUnStrikeFaux()
+    {
+        assertFalse(this.joueur.estUnStrike(9));
+    }
+    @Test
+    public void testFrameClassique()
+    {
+
     }
 
 
