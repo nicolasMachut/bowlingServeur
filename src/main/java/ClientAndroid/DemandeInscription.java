@@ -1,14 +1,17 @@
 package ClientAndroid;
 
-public class demandeInscription {
-	public static void main(String[] args) {
+import receptionJoueurs.threadReceptionJoueursPrxHelper;
+
+public class DemandeInscription extends Ice.Application{
+	
+	@Override
+	public int run(String[] args) {
 		int status = 0;
 		Ice.Communicator ic = null;
 		try {
 			ic = Ice.Util.initialize(args);
-			Ice.ObjectPrx base = ic
-					.stringToProxy("receptionJoueur:default -p 10020");
-			receptionJoueurs.threadReceptionJoueursPrx receptionJoueur = receptionJoueurs.threadReceptionJoueursPrxHelper.checkedCast(base);
+			Ice.ObjectPrx base = ic.stringToProxy("receptionJoueur :tcp -h 192.168.1.89 -p 10020");
+			receptionJoueurs.threadReceptionJoueursPrx receptionJoueur = threadReceptionJoueursPrxHelper.checkedCast(base);
 			if (receptionJoueur == null)
 				throw new Error("Invalid proxy");
 			
@@ -33,6 +36,13 @@ public class demandeInscription {
 				status = 1;
 			}
 		}
-		System.exit(status);
+		return 0;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		DemandeInscription app = new DemandeInscription();
+		app.run(args);
+		System.exit(0);
 	}
 }
