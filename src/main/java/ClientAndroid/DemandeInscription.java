@@ -10,12 +10,12 @@ public class DemandeInscription extends Ice.Application{
 		Ice.Communicator ic = null;
 		try {
 			ic = Ice.Util.initialize(args);
-			Ice.ObjectPrx base = ic.stringToProxy("receptionJoueur :tcp -h 192.168.1.69 -p 10020");
+			Ice.ObjectPrx base = ic.stringToProxy("receptionJoueur :tcp -h 192.168.1.10 -p 10020");
 			receptionJoueurs.threadReceptionJoueursPrx receptionJoueur = threadReceptionJoueursPrxHelper.checkedCast(base);
 			if (receptionJoueur == null)
 				throw new Error("Invalid proxy");
 			
-			String[] equipe = new String[]{"Johan","Edouard"};
+			String[] equipe = new String[]{"Johan","Edouard","Monstre du Loch Ness"};
 			
 			System.out.println(receptionJoueur.inscriptionJoueur(equipe));
 			

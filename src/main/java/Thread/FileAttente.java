@@ -14,6 +14,7 @@ import java.util.Queue;
 public class FileAttente extends Thread {
         private Queue<List<Joueur>> waitingQueue = new ArrayDeque<List<Joueur>>();
         private Bowling bowling;
+        private int tempsAttente = 0;
 
     public FileAttente(Bowling bowling) {
         super();
@@ -23,7 +24,7 @@ public class FileAttente extends Thread {
     public void run(){
         while (true){
             Piste unePiste = bowling.getMeilleurePiste();
-            if(unePiste.estLibre()){
+            if(unePiste.estLibre() && !waitingQueue.isEmpty()){
                 try {
                     unePiste.NouvellePartie();
                 } catch (Exception e) {

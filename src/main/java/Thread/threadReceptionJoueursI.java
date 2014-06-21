@@ -16,12 +16,12 @@ public class threadReceptionJoueursI extends _threadReceptionJoueursDisp {
     }
 
 	public int inscriptionJoueur(String[] maListe, Current __current) {
-		// TODO Auto-generated method stub
         List<Joueur> uneEquipe = new ArrayList<Joueur>();
         for(String pseudo : maListe){
                Joueur unJoueur = new Joueur(pseudo);
                uneEquipe.add(unJoueur);
             }
+        fileAttente.ajoutJoueursFileAttente(uneEquipe);
 		return 0;
 	}
 

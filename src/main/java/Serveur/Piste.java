@@ -81,7 +81,7 @@ public class Piste extends Thread{
     public void ajoutDesJoueurs(List<Joueur> listeJoueur) throws Exception {
        if (listeJoueur.size()>= Bowling.nombreDeJoueursParPartie)
        {
-           throw new Exception("Trop de joueurs sur cette piste, 6 au maximum.");
+           throw new Exception("Trop de joueurs sur cette piste, " + Bowling.nombreDeJoueursParPartie  +" au maximum.");
        }
 
        this.joueurs=listeJoueur;

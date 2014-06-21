@@ -31,7 +31,7 @@ public class Joueur {
         }*/
         this.lances[lanceCourant] = nombreDeQuille;
 
-        System.out.println(this.pseudo +" Lance n° "+this.lanceCourant+" : A fait tombé "+nombreDeQuille+" quilles");
+        System.out.println(this.pseudo +" Lance n� "+this.lanceCourant+" : A fait tombé "+nombreDeQuille+" quilles");
 
         lanceCourant++;
     }
@@ -61,9 +61,9 @@ public class Joueur {
                     scoreParFrame += this.nombreDequilleTombeDansLaFrame(frame);
                 }
             }
-            System.out.println("score frame"+frame+" "+ scoreParFrame);
+            System.out.println("debug: score frame"+frame+" "+ scoreParFrame);
         }
-        System.out.println("score avant dernier frame" +score);
+        System.out.println("debug :score avant dernier frame" +score);
         if(this.estUnSparePourScore(9) || this.estUnStrikePourScore(9))
         {
             if(this.estUnSparePourScore(9))
@@ -73,7 +73,7 @@ public class Joueur {
             }
             if(this.estUnStrikePourScore(9))
             {
-                System.out.println("strike au dernier frame");
+                System.out.println("debug: strike au dernier frame");
                 score += 10 + this.lances[19] + this.lances[20];
                 score += this.lances[19];
                 score += this.lances[20];
@@ -81,11 +81,11 @@ public class Joueur {
         }
         else
         {
-            System.out.println("dernier frame normal");
+            System.out.println("debug: dernier frame normal");
             score += this.lances[18];
             score += this.lances[19];
         }
-        System.out.println("score apres dernier frame"+score);
+        System.out.println("debug: score apres dernier frame"+score);
 
         return score;
     }
@@ -94,7 +94,7 @@ public class Joueur {
     {
         if(lances[indexDeFrame*2] + lances[indexDeFrame*2+1] == 10)
         {
-            System.out.println("la frame "+indexDeFrame+" est un spare avec le lance "+indexDeFrame*2+" et "+(indexDeFrame*2+1));
+            System.out.println("debug :la frame "+indexDeFrame+" est un spare avec le lance "+indexDeFrame*2+" et "+(indexDeFrame*2+1));
             return true;
         }
         else
@@ -107,7 +107,7 @@ public class Joueur {
     {
         if(lances[indexDeFrame*2] == 10)
         {
-            System.out.println("la frame "+indexDeFrame+" est un strike avec le lance "+indexDeFrame*2+" et "+(indexDeFrame*2+1));
+            System.out.println("debug: la frame "+indexDeFrame+" est un strike avec le lance "+indexDeFrame*2+" et "+(indexDeFrame*2+1));
             return true;
         }
         else
@@ -159,11 +159,11 @@ public class Joueur {
     public void jouerSonTour() {
 
 
-        int RandomQuillePremierLancé = this.randomQuilles(0);
+        int RandomQuillePremierLancer = this.randomQuilles(0);
         int random2 = 0;
-        this.lance(RandomQuillePremierLancé);
+        this.lance(RandomQuillePremierLancer);
 
-        FrameClassique(RandomQuillePremierLancé);
+        FrameClassique(RandomQuillePremierLancer);
         if (this.lanceCourant==20 && this.estUnSparePourScore(9))
         {
             this.lance(this.randomQuilles(0));
@@ -172,9 +172,9 @@ public class Joueur {
 
     }
 
-    public void FrameClassique(int randomQuillePremierLancé) {
-        int randomQuilleSecondLancé;
-        if(this.estUnStrike(randomQuillePremierLancé))
+    public void FrameClassique(int randomQuillePremierLancer) {
+        int randomQuilleSecondLancer;
+        if(this.estUnStrike(randomQuillePremierLancer))
         {
             if(this.lanceCourant==19)
             {
@@ -187,8 +187,8 @@ public class Joueur {
         }
         else
         {
-            randomQuilleSecondLancé = this.randomQuilles(randomQuillePremierLancé);
-            this.lance(randomQuilleSecondLancé);
+            randomQuilleSecondLancer = this.randomQuilles(randomQuillePremierLancer);
+            this.lance(randomQuilleSecondLancer);
         }
     }
 
