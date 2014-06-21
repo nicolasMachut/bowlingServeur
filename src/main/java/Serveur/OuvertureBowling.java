@@ -32,11 +32,16 @@ public class OuvertureBowling {
 
 
         try {
-            bowling.getPistes()[1].NouvellePartie();
-            bowling.getPistes()[1].ajoutDesJoueurs(equipe1);
+            bowling.getPistes()[0].NouvellePartie();
+            bowling.getPistes()[0].ajoutDesJoueurs(equipe1);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        System.out.println(bowling.getPistes()[0].getTempsAttente());
+        bowling.getPistes()[0].getJoueurs().get(0).lance(5);
+        System.out.println(bowling.getPistes()[0].getTempsAttente());
+
     }
 }

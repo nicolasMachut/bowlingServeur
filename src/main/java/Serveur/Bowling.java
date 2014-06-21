@@ -19,6 +19,7 @@ public class Bowling
         for(int i = 0; i < this.pistes.length; i++)
         {
             this.pistes[i] = new Piste();
+            this.pistes[i].setNumero(i);
         }
     }
 
@@ -28,19 +29,19 @@ public class Bowling
         return this.pistes;
     }
 
-    public int getMeilleurePiste() {
-        int nextPiste=this.pistes[0].getTempsAttente();
+    public Piste getMeilleurePiste() {
+        Piste nextPiste = this.pistes[0];
 
         for(int nbPiste=0;nbPiste<this.pistes.length;nbPiste++)
         {
            if(this.pistes[nbPiste].estLibre())
            {
-               return nbPiste;
+               return this.pistes[nbPiste];
            }else
            {
-               if(this.pistes[nbPiste].getTempsAttente()<nextPiste)
+               if(this.pistes[nbPiste].getTempsAttente()<nextPiste.getTempsAttente())
                {
-                   nextPiste = this.pistes[nbPiste].getTempsAttente();
+                   nextPiste = this.pistes[nbPiste];
                }
            }
 

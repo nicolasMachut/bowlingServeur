@@ -6,11 +6,35 @@ import java.util.List;
 /**
  * Created by nicolas on 23/03/14.
  */
+public class Piste extends Thread{
 
-public class Piste {
+    public boolean isLibre() {
+        return libre;
+    }
+
+    public void setLibre(boolean libre) {
+        this.libre = libre;
+    }
 
     private boolean libre;
-    private int tempsAttenteEnSeconde;
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    private int numero;
+
+    public List<Joueur> getJoueurs() {
+        return joueurs;
+    }
+
+    public void setJoueurs(List<Joueur> joueurs) {
+        this.joueurs = joueurs;
+    }
 
     private List<Joueur> joueurs;
 
@@ -18,15 +42,35 @@ public class Piste {
     {
         this.libre = true;
         this.joueurs = new ArrayList<Joueur>();
-        this.tempsAttenteEnSeconde = 0;
 
     }
 
     public void NouvellePartie() throws Exception{
         if(this.libre)
+        {
             this.libre = false;
+            this.JouerPartie();
+        }
         else
             throw new Exception("La piste est déjà occupée.");
+    }
+
+    public void JouerPartie()
+    {
+        for(int i =0; i < 10; i++)
+        {
+            for(Joueur unJoueur : this.joueurs)
+            {
+                unJoueur.jouerSonTour();
+            }
+        }
+        for(Joueur unJoueur : this.joueurs)
+        {
+            System.out.println("score "+unJoueur.getPseudo()+" : "+unJoueur.score());
+        }
+
+        this.libre = true;
+        this.joueurs = null;
     }
 
     public int nombreDeJoueurs()
@@ -35,14 +79,12 @@ public class Piste {
     }
 
     public void ajoutDesJoueurs(List<Joueur> listeJoueur) throws Exception {
-       if (listeJoueur.size()>=Bowling.nombreDeJoueursParPartie)
+       if (listeJoueur.size()>= Bowling.nombreDeJoueursParPartie)
        {
            throw new Exception("Trop de joueurs sur cette piste, 6 au maximum.");
        }
 
        this.joueurs=listeJoueur;
-       this.tempsAttenteEnSeconde = listeJoueur.size() * (15*60);
-
 
     }
 
@@ -58,8 +100,7 @@ public class Piste {
 
     public int getTempsAttente()
     {
-        this.tempsAttenteEnSeconde = this.calculTempsAttente();
-        return this.tempsAttenteEnSeconde;
+        return this.calculTempsAttente();
     }
 
     private int calculTempsAttente()
@@ -72,7 +113,6 @@ public class Piste {
                 total += 10;
             }
         }
-        System.out.println("total : "+total);
-        return (total / 60);
+        return total;
     }
 }
