@@ -3,6 +3,13 @@ package Thread;
 
 public class threadReceptionJoueur extends Thread {
 
+    private FileAttente fileAttente;
+
+    public threadReceptionJoueur(FileAttente fileAttente){
+        super();
+        this.fileAttente = fileAttente;
+    }
+
 	public void run() {
 		this.setName("enfoiredethread");
 	    int status = 0;
@@ -12,7 +19,7 @@ public class threadReceptionJoueur extends Thread {
 
             Ice.ObjectAdapter adapter =
                 ic.createObjectAdapterWithEndpoints("receptionJoueurAdapter", "default -p 10020");
-            Ice.Object object = new threadReceptionJoueursI();
+            Ice.Object object = new threadReceptionJoueursI(this.fileAttente);
             adapter.add(object, ic.stringToIdentity("receptionJoueur"));
             adapter.activate();
             ic.waitForShutdown();

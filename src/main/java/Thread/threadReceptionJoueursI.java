@@ -1,15 +1,27 @@
 package Thread;
 
-import java.util.List;
-
 import Ice.Current;
 import Serveur.Joueur;
-import receptionJoueurs.*;
-public class threadReceptionJoueursI extends _threadReceptionJoueursDisp {
+import receptionJoueurs._threadReceptionJoueursDisp;
 
+import java.util.ArrayList;
+import java.util.List;
+
+public class threadReceptionJoueursI extends _threadReceptionJoueursDisp {
+    private FileAttente fileAttente;
+
+    public threadReceptionJoueursI(FileAttente fileAttente){
+        super();
+        this.fileAttente = fileAttente;
+    }
 
 	public int inscriptionJoueur(String[] maListe, Current __current) {
 		// TODO Auto-generated method stub
+        List<Joueur> uneEquipe = new ArrayList<Joueur>();
+        for(String pseudo : maListe){
+               Joueur unJoueur = new Joueur(pseudo);
+               uneEquipe.add(unJoueur);
+            }
 		return 0;
 	}
 
