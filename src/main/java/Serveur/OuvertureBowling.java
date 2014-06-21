@@ -14,6 +14,8 @@ public class OuvertureBowling {
     	//unThread.start();
         Bowling bowling = new Bowling();
         FileAttente waitingList = new FileAttente(bowling);
+        waitingList.start();
         threadReceptionJoueur receptionJoueur = new threadReceptionJoueur(waitingList);
+        receptionJoueur.start();
     }
 }

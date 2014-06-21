@@ -18,7 +18,7 @@ public class threadReceptionJoueur extends Thread {
             ic = Ice.Util.initialize();
 
             Ice.ObjectAdapter adapter =
-                ic.createObjectAdapterWithEndpoints("receptionJoueurAdapter", "default -p 10020");
+                ic.createObjectAdapterWithEndpoints("receptionJoueurAdapter", "default -h 192.168.1.38 -p 10020");
             Ice.Object object = new threadReceptionJoueursI(this.fileAttente);
             adapter.add(object, ic.stringToIdentity("receptionJoueur"));
             adapter.activate();

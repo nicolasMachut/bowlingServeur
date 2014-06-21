@@ -1,9 +1,10 @@
 package Thread;
 
-import Serveur.*;
+import Serveur.Bowling;
+import Serveur.Joueur;
+import Serveur.Piste;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
@@ -36,40 +37,6 @@ public class FileAttente extends Thread {
                     e.printStackTrace();
                 }
             }
-
-            Joueur ownSstick = new Joueur("Nicolas");
-            Joueur laTruelle = new Joueur("AlexBrbz");
-            Joueur meph = new Joueur("Johan");
-
-            Joueur crymx = new Joueur("AlexSt");
-            Joueur liquitheory = new Joueur("Edouard");
-
-            List<Joueur> equipe1 = new ArrayList<Joueur>();
-            equipe1.add(ownSstick);
-            equipe1.add(laTruelle);
-            equipe1.add(meph);
-
-            waitingQueue.add(equipe1);
-
-            List<Joueur> equipe2 = new ArrayList<Joueur>();
-            equipe2.add(crymx);
-            equipe2.add(liquitheory);
-
-            waitingQueue.add(equipe2);
-
-            while(waitingQueue.size()>0){
-                List<Joueur> uneEquipe = waitingQueue.peek();
-                waitingQueue.poll();
-
-            }
-            try {
-                bowling.getPistes()[1].NouvellePartie();
-                bowling.getPistes()[1].ajoutDesJoueurs(equipe1);
-                bowling.getPistes()[1].JouerPartie();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
         }
     }
 
