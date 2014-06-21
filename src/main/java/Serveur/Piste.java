@@ -43,6 +43,7 @@ public class Piste {
        this.joueurs=listeJoueur;
        this.tempsAttenteEnSeconde = listeJoueur.size() * (15*60);
 
+
     }
 
 
@@ -66,11 +67,12 @@ public class Piste {
         int total = 0;
         for(int i  = 0; i < this.joueurs.size(); i++)
         {
-            for(int j = 0; j < this.joueurs.get(i).getLanceCourant(); j++)
+            for(int j = 0; j < 20 - this.joueurs.get(i).getLanceCourant(); j++)
             {
-                total += 5;
+                total += 10;
             }
         }
-        return (15*this.joueurs.size()*60) - total;
+        System.out.println("total : "+total);
+        return (total / 60);
     }
 }

@@ -35,8 +35,8 @@ public class Piste extends Thread{
     {
         for(int i =0; i < 10; i++)
         {
-        for(Joueur unJoueur : this.joueurs)
-        {
+            for(Joueur unJoueur : this.joueurs)
+            {
                 unJoueur.jouerSonTour();
             }
         }

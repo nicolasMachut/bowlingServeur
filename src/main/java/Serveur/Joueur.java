@@ -159,11 +159,11 @@ public class Joueur {
     public void jouerSonTour() {
 
 
-        int RandomQuillePremierLancer = this.randomQuilles(0);
+        int RandomQuillePremierLancé = this.randomQuilles(0);
         int random2 = 0;
-        this.lance(RandomQuillePremierLancer);
+        this.lance(RandomQuillePremierLancé);
 
-        FrameClassique(RandomQuillePremierLancer);
+        FrameClassique(RandomQuillePremierLancé);
         if (this.lanceCourant==20 && this.estUnSparePourScore(9))
         {
             this.lance(this.randomQuilles(0));
@@ -172,9 +172,9 @@ public class Joueur {
 
     }
 
-    public void FrameClassique(int randomQuillePremierLancer) {
-        int randomQuilleSecondLancer;
-        if(this.estUnStrike(randomQuillePremierLancer))
+    public void FrameClassique(int randomQuillePremierLancé) {
+        int randomQuilleSecondLancé;
+        if(this.estUnStrike(randomQuillePremierLancé))
         {
             if(this.lanceCourant==19)
             {
@@ -187,8 +187,8 @@ public class Joueur {
         }
         else
         {
-            randomQuilleSecondLancer = this.randomQuilles(randomQuillePremierLancer);
-            this.lance(randomQuilleSecondLancer);
+            randomQuilleSecondLancé = this.randomQuilles(randomQuillePremierLancé);
+            this.lance(randomQuilleSecondLancé);
         }
     }
 

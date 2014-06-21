@@ -42,7 +42,6 @@ public class Bowling
                    nextPiste = this.pistes[nbPiste].getTempsAttente();
                }
            }
-
         }
         return nextPiste;
     }
