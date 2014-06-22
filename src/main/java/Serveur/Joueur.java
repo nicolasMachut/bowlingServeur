@@ -24,11 +24,11 @@ public class Joueur {
 
     public void lance(int nombreDeQuille)
     {
-        /*try {
-            Thread.sleep(1000);
+        try {
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
+        }
         this.lances[lanceCourant] = nombreDeQuille;
 
         System.out.println(this.pseudo +" Lance n∞ "+this.lanceCourant+" : A fait tomb√© "+nombreDeQuille+" quilles");

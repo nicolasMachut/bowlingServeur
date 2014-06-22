@@ -15,7 +15,7 @@ public class DemandeInscription extends Ice.Application{
 			if (receptionJoueur == null)
 				throw new Error("Invalid proxy");
 			
-			String[] equipe = new String[]{"Johan","Papa","Maman"};
+			String[] equipe = new String[]{"Johan","Papa","Maman","oo","uuu","uuuu"};
 			
 			System.out.println(receptionJoueur.inscriptionJoueur(equipe));
 			

@@ -6,7 +6,7 @@ public class Bowling
 {
     public static final int nombreDeJoueursParPartie = 6;
 
-    private Piste[] pistes = new Piste[15];
+    private Piste[] pistes = new Piste[1];
 
 
     public Bowling()

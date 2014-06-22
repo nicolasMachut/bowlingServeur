@@ -26,14 +26,9 @@ public class FileAttente extends Thread {
             Piste unePiste = bowling.getMeilleurePiste();
             if(unePiste.estLibre() && !waitingQueue.isEmpty()){
                 try {
-                    unePiste.NouvellePartie();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                try {
                     unePiste.ajoutDesJoueurs(waitingQueue.peek());
                     waitingQueue.poll();
-                    unePiste.JouerPartie();
+                    unePiste.start();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -45,11 +40,12 @@ public class FileAttente extends Thread {
     	int tempsAttenteEstime = 0;
     	int numeroPiste;
         waitingQueue.add(team);
-        this.tempsAttenteFile += calculTempsJeuEstimeEquipe(team);
         if(bowling.getMeilleurePiste().getTempsAttente() > 0){
         	tempsAttenteEstime =  this.tempsAttenteFile + bowling.getMeilleurePiste().getTempsAttente();
         }
+        this.tempsAttenteFile += calculTempsJeuEstimeEquipe(team);
         return String.valueOf(tempsAttenteEstime) + "," + String.valueOf(bowling.getMeilleurePiste().getNumero());
+       
     }
     
     private int calculTempsJeuEstimeEquipe (List<Joueur> equipe){

@@ -18,9 +18,11 @@ public class threadReceptionJoueursI extends _threadReceptionJoueursDisp {
 	public String inscriptionJoueur(String[] maListe, Current __current) {
         List<Joueur> uneEquipe = new ArrayList<Joueur>();
         for(String pseudo : maListe){
+        	if (!pseudo.equals("")){
                Joueur unJoueur = new Joueur(pseudo);
                uneEquipe.add(unJoueur);
             }
+        }
         
         return fileAttente.ajoutJoueursFileAttente(uneEquipe);
 	}
