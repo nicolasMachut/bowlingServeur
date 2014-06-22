@@ -31,7 +31,7 @@ public class Joueur {
         }*/
         this.lances[lanceCourant] = nombreDeQuille;
 
-        System.out.println(this.pseudo +" Lance n� "+this.lanceCourant+" : A fait tombé "+nombreDeQuille+" quilles");
+        System.out.println(this.pseudo +" Lance n� "+this.lanceCourant+" : A fait tombé "+nombreDeQuille+" quilles");
 
         lanceCourant++;
     }
@@ -107,7 +107,7 @@ public class Joueur {
     {
         if(lances[indexDeFrame*2] == 10)
         {
-            System.out.println("debug: la frame "+indexDeFrame+" est un strike avec le lance "+indexDeFrame*2+" et "+(indexDeFrame*2+1));
+            System.out.println("debug: la frame "+indexDeFrame+" est un strike avec le lance "+(indexDeFrame*2)+" et "+(indexDeFrame*2+1));
             return true;
         }
         else
