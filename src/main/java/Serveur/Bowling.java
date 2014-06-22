@@ -19,7 +19,6 @@ public class Bowling
         for(int i = 0; i < this.pistes.length; i++)
         {
             this.pistes[i] = new Piste();
-            this.pistes[i].setNumero(i);
         }
     }
 

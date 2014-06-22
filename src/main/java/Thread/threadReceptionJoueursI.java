@@ -15,14 +15,14 @@ public class threadReceptionJoueursI extends _threadReceptionJoueursDisp {
         this.fileAttente = fileAttente;
     }
 
-	public int inscriptionJoueur(String[] maListe, Current __current) {
+	public String inscriptionJoueur(String[] maListe, Current __current) {
         List<Joueur> uneEquipe = new ArrayList<Joueur>();
         for(String pseudo : maListe){
                Joueur unJoueur = new Joueur(pseudo);
                uneEquipe.add(unJoueur);
             }
-        fileAttente.ajoutJoueursFileAttente(uneEquipe);
-		return 0;
+        
+        return fileAttente.ajoutJoueursFileAttente(uneEquipe);
 	}
 
 	

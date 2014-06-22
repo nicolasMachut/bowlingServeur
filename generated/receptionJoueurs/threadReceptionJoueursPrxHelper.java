@@ -24,17 +24,17 @@ public final class threadReceptionJoueursPrxHelper extends Ice.ObjectPrxHelperBa
 {
     private static final String __inscriptionJoueur_name = "inscriptionJoueur";
 
-    public int inscriptionJoueur(String[] maListe)
+    public String inscriptionJoueur(String[] maListe)
     {
         return inscriptionJoueur(maListe, null, false);
     }
 
-    public int inscriptionJoueur(String[] maListe, java.util.Map<String, String> __ctx)
+    public String inscriptionJoueur(String[] maListe, java.util.Map<String, String> __ctx)
     {
         return inscriptionJoueur(maListe, __ctx, true);
     }
 
-    private int inscriptionJoueur(String[] maListe, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    private String inscriptionJoueur(String[] maListe, java.util.Map<String, String> __ctx, boolean __explicitCtx)
     {
         if(__explicitCtx && __ctx == null)
         {
@@ -122,7 +122,7 @@ public final class threadReceptionJoueursPrxHelper extends Ice.ObjectPrxHelperBa
         return __result;
     }
 
-    public int end_inscriptionJoueur(Ice.AsyncResult __result)
+    public String end_inscriptionJoueur(Ice.AsyncResult __result)
     {
         Ice.AsyncResult.__check(__result, this, __inscriptionJoueur_name);
         boolean __ok = __result.__wait();
@@ -140,8 +140,8 @@ public final class threadReceptionJoueursPrxHelper extends Ice.ObjectPrxHelperBa
                 }
             }
             IceInternal.BasicStream __is = __result.__startReadParams();
-            int __ret;
-            __ret = __is.readInt();
+            String __ret;
+            __ret = __is.readString();
             __result.__endReadParams();
             return __ret;
         }

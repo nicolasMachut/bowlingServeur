@@ -22,9 +22,9 @@ package receptionJoueurs;
 
 public interface threadReceptionJoueursPrx extends Ice.ObjectPrx
 {
-    public int inscriptionJoueur(String[] maListe);
+    public String inscriptionJoueur(String[] maListe);
 
-    public int inscriptionJoueur(String[] maListe, java.util.Map<String, String> __ctx);
+    public String inscriptionJoueur(String[] maListe, java.util.Map<String, String> __ctx);
 
     public Ice.AsyncResult begin_inscriptionJoueur(String[] maListe);
 
@@ -38,5 +38,5 @@ public interface threadReceptionJoueursPrx extends Ice.ObjectPrx
 
     public Ice.AsyncResult begin_inscriptionJoueur(String[] maListe, java.util.Map<String, String> __ctx, Callback_threadReceptionJoueurs_inscriptionJoueur __cb);
 
-    public int end_inscriptionJoueur(Ice.AsyncResult __result);
+    public String end_inscriptionJoueur(Ice.AsyncResult __result);
 }

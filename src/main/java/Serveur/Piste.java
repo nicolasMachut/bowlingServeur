@@ -8,111 +8,116 @@ import java.util.List;
  */
 public class Piste extends Thread{
 
-    public boolean isLibre() {
-        return libre;
-    }
+	private static int numeroEnCours = 0;
+	private int numero;
 
-    public void setLibre(boolean libre) {
-        this.libre = libre;
-    }
+	public boolean isLibre() {
+		return libre;
+	}
 
-    private boolean libre;
+	public void setLibre(boolean libre) {
+		this.libre = libre;
+	}
 
-    public int getNumero() {
-        return numero;
-    }
+	private boolean libre;
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
 
-    private int numero;
+	public List<Joueur> getJoueurs() {
+		return joueurs;
+	}
 
-    public List<Joueur> getJoueurs() {
-        return joueurs;
-    }
+	public void setJoueurs(List<Joueur> joueurs) {
+		this.joueurs = joueurs;
+	}
 
-    public void setJoueurs(List<Joueur> joueurs) {
-        this.joueurs = joueurs;
-    }
+	private List<Joueur> joueurs;
 
-    private List<Joueur> joueurs;
+	public Piste()
+	{
+		this.libre = true;
+		this.joueurs = new ArrayList<Joueur>();
+		numeroEnCours += 1;
+		this.numero = numeroEnCours;
 
-    public Piste()
-    {
-        this.libre = true;
-        this.joueurs = new ArrayList<Joueur>();
+	}
 
-    }
+	public int getNumero(){
+		return this.numero;
+	}
 
-    public void NouvellePartie() throws Exception{
-        if(this.libre)
-        {
-            this.libre = false;
-            this.JouerPartie();
-        }
-        else
-            throw new Exception("La piste est déjà occupée.");
-    }
+	public void NouvellePartie() throws Exception{
+		if(this.libre)
+		{
+			this.libre = false;
+			this.JouerPartie();
+		}
+		else
+			throw new Exception("La piste est déjà occupée.");
+	}
 
-    public void JouerPartie()
-    {
-        for(int i =0; i < 10; i++)
-        {
-            for(Joueur unJoueur : this.joueurs)
-            {
-                unJoueur.jouerSonTour();
-            }
-        }
-        for(Joueur unJoueur : this.joueurs)
-        {
-            System.out.println("score "+unJoueur.getPseudo()+" : "+unJoueur.score());
-        }
+	public void JouerPartie()
+	{
+		for(int i =0; i < 10; i++)
+		{
+			for(Joueur unJoueur : this.joueurs)
+			{
+				unJoueur.jouerSonTour();
+			}
+		}
+		for(Joueur unJoueur : this.joueurs)
+		{
+			System.out.println("score "+unJoueur.getPseudo()+" : "+unJoueur.score());
+		}
 
-        this.libre = true;
-        this.joueurs = null;
-    }
+		this.libre = true;
+		this.joueurs = new ArrayList<Joueur>();
+	}
 
-    public int nombreDeJoueurs()
-    {
-        return this.joueurs.size();
-    }
+	public int nombreDeJoueurs()
+	{
+		return this.joueurs.size();
+	}
 
-    public void ajoutDesJoueurs(List<Joueur> listeJoueur) throws Exception {
-       if (listeJoueur.size()>= Bowling.nombreDeJoueursParPartie)
-       {
-           throw new Exception("Trop de joueurs sur cette piste, " + Bowling.nombreDeJoueursParPartie  +" au maximum.");
-       }
+	public void ajoutDesJoueurs(List<Joueur> listeJoueur) throws Exception {
+		if (listeJoueur.size()>= Bowling.nombreDeJoueursParPartie)
+		{
+			throw new Exception("Trop de joueurs sur cette piste, " + Bowling.nombreDeJoueursParPartie  +" au maximum.");
+		}
 
-       this.joueurs=listeJoueur;
+		this.joueurs=listeJoueur;
 
-    }
-
+	}
 
 
-    public boolean estLibre() {
-        return this.libre;
-    }
 
-    public void CloturerPartie() {
-        this.libre = true;
-    }
+	public boolean estLibre() {
+		return this.libre;
+	}
 
-    public int getTempsAttente()
-    {
-        return this.calculTempsAttente();
-    }
+	public void CloturerPartie() {
+		this.libre = true;
+	}
 
-    private int calculTempsAttente()
-    {
-        int total = 0;
-        for(int i  = 0; i < this.joueurs.size(); i++)
-        {
-            for(int j = 0; j < 20 - this.joueurs.get(i).getLanceCourant(); j++)
-            {
-                total += 10;
-            }
-        }
-        return total;
-    }
+	public int getTempsAttente()
+	{
+		return this.calculTempsAttente();
+	}
+
+	private int calculTempsAttente()
+	{
+		int total = 0;
+		if (this.joueurs.size() > 0){
+			for(int i  = 0; i < this.joueurs.size(); i++)
+			{
+				for(int j = 0; j < 20 - this.joueurs.get(i).getLanceCourant(); j++)
+				{
+					total += 10;
+				}
+			}
+		}
+		return total;
+	}
 }

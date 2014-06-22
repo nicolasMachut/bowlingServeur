@@ -14,8 +14,8 @@ import java.util.Queue;
 public class FileAttente extends Thread {
         private Queue<List<Joueur>> waitingQueue = new ArrayDeque<List<Joueur>>();
         private Bowling bowling;
-        private int tempsAttente = 0;
-
+        private int tempsAttenteFile = 0;
+        final int tempsJeuJoueur = 15 * 60;
     public FileAttente(Bowling bowling) {
         super();
         this.bowling = bowling;
@@ -41,7 +41,18 @@ public class FileAttente extends Thread {
         }
     }
 
-    public void ajoutJoueursFileAttente(List<Joueur> team){
+    public String ajoutJoueursFileAttente(List<Joueur> team){
+    	int tempsAttenteEstime = 0;
+    	int numeroPiste;
         waitingQueue.add(team);
+        this.tempsAttenteFile += calculTempsJeuEstimeEquipe(team);
+        if(bowling.getMeilleurePiste().getTempsAttente() > 0){
+        	tempsAttenteEstime =  this.tempsAttenteFile + bowling.getMeilleurePiste().getTempsAttente();
+        }
+        return String.valueOf(tempsAttenteEstime) + "," + String.valueOf(bowling.getMeilleurePiste().getNumero());
+    }
+    
+    private int calculTempsJeuEstimeEquipe (List<Joueur> equipe){
+    	return tempsJeuJoueur * equipe.size();
     }
 }

@@ -22,12 +22,12 @@ package receptionJoueurs;
 
 public abstract class Callback_threadReceptionJoueurs_inscriptionJoueur extends Ice.TwowayCallback
 {
-    public abstract void response(int __ret);
+    public abstract void response(String __ret);
 
     public final void __completed(Ice.AsyncResult __result)
     {
         threadReceptionJoueursPrx __proxy = (threadReceptionJoueursPrx)__result.getProxy();
-        int __ret = 0;
+        String __ret = null;
         try
         {
             __ret = __proxy.end_inscriptionJoueur(__result);

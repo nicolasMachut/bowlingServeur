@@ -18,7 +18,8 @@ public class PisteTest {
 
     private Piste piste;
     private Bowling bowling;
-
+    private static int numero = 0;
+    
     @Before
     public void setup()
     {

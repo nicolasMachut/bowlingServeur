@@ -22,7 +22,7 @@ package receptionJoueurs;
 
 public final class _threadReceptionJoueursDelM extends Ice._ObjectDelM implements _threadReceptionJoueursDel
 {
-    public int
+    public String
     inscriptionJoueur(String[] maListe, java.util.Map<String, String> __ctx, Ice.Instrumentation.InvocationObserver __observer)
         throws IceInternal.LocalExceptionWrapper
     {
@@ -54,8 +54,8 @@ public final class _threadReceptionJoueursDelM extends Ice._ObjectDelM implement
                     }
                 }
                 IceInternal.BasicStream __is = __og.startReadParams();
-                int __ret;
-                __ret = __is.readInt();
+                String __ret;
+                __ret = __is.readString();
                 __og.endReadParams();
                 return __ret;
             }
