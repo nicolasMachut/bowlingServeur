@@ -76,7 +76,8 @@ public class JoueurTest {
     @Test
     public void testPartieParfaite()
     {
-        this.effectueLesLances(10, 10);
+        //une partie parfaite compte 12 lancées : 1 par frame + les 2 lancées bonnus
+        this.effectueLesLances(12, 10);
         assertEquals(300, this.joueur.score());
     }
 

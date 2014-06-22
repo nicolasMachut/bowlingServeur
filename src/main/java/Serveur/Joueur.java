@@ -5,10 +5,11 @@ package Serveur;
  */
 public class Joueur {
 
-    private int[] lances = new int[21];
+    private int[] lances = new int[22];
     private int lanceCourant = 0;
     private String pseudo;
     private boolean partiejoueurTerminee = false;
+    private int scoreCourant = 0;
 
     public Joueur()
     {
@@ -30,14 +31,23 @@ public class Joueur {
             e.printStackTrace();
         }
         this.lances[lanceCourant] = nombreDeQuille;
+        System.out.println(this.pseudo+" lances et fait tomber "+nombreDeQuille+" quilles");
+        System.out.println(this.scoreCourant);
 
-        System.out.println(this.pseudo +" Lance n∞ "+this.lanceCourant+" : A fait tomb√© "+nombreDeQuille+" quilles");
+        if(nombreDeQuille == 10 && this.lanceCourant < 19)
+            lanceCourant+=2;
+        else
+            lanceCourant++;
 
-        lanceCourant++;
+        this.scoreCourant = this.score();
     }
 
     public int score()
     {
+        for(int i = 0; i < this.lances.length; i++)
+        {
+            //System.out.println(this.lances[i]);
+        }
         int score = 0;
         int scoreParFrame;
         for(int frame = 0; frame < 9; frame++)
@@ -46,6 +56,8 @@ public class Joueur {
             if (this.estUnStrikePourScore(frame))
             {
                 score += 10 + this.bonusDeStrike(frame);
+                //System.out.println(score);
+                //System.out.println(this.bonusDeStrike(frame));
                 scoreParFrame += 10 + this.bonusDeStrike(frame);
             }
             else
@@ -61,9 +73,9 @@ public class Joueur {
                     scoreParFrame += this.nombreDequilleTombeDansLaFrame(frame);
                 }
             }
-            System.out.println("debug: score frame"+frame+" "+ scoreParFrame);
+            //System.out.println("debug: score frame"+frame+" "+ scoreParFrame);
         }
-        System.out.println("debug :score avant dernier frame" +score);
+        //System.out.println("debug :score avant dernier frame" +score);
         if(this.estUnSparePourScore(9) || this.estUnStrikePourScore(9))
         {
             if(this.estUnSparePourScore(9))
@@ -73,7 +85,6 @@ public class Joueur {
             }
             if(this.estUnStrikePourScore(9))
             {
-                System.out.println("debug: strike au dernier frame");
                 score += 10 + this.lances[19] + this.lances[20];
                 score += this.lances[19];
                 score += this.lances[20];
@@ -81,20 +92,19 @@ public class Joueur {
         }
         else
         {
-            System.out.println("debug: dernier frame normal");
+            //System.out.println("debug: dernier frame normal");
             score += this.lances[18];
             score += this.lances[19];
         }
-        System.out.println("debug: score apres dernier frame"+score);
-
+        //System.out.println("debug: score apres dernier frame"+score);
         return score;
     }
 
     public boolean estUnSparePourScore(int indexDeFrame)
     {
-        if(lances[indexDeFrame*2] + lances[indexDeFrame*2+1] == 10)
+        if(lances[indexDeFrame*2] + lances[indexDeFrame*2+1] == 10 && !this.estUnStrikePourScore(indexDeFrame))
         {
-            System.out.println("debug :la frame "+indexDeFrame+" est un spare avec le lance "+indexDeFrame*2+" et "+(indexDeFrame*2+1));
+            //System.out.println("debug :la frame "+indexDeFrame+" est un spare avec le lance "+indexDeFrame*2+" et "+(indexDeFrame*2+1));
             return true;
         }
         else
@@ -107,7 +117,7 @@ public class Joueur {
     {
         if(lances[indexDeFrame*2] == 10)
         {
-            System.out.println("debug: la frame "+indexDeFrame+" est un strike avec le lance "+indexDeFrame*2+" et "+(indexDeFrame*2+1));
+            //System.out.println("debug: la frame "+indexDeFrame*2+" est un strike ");
             return true;
         }
         else
@@ -139,8 +149,20 @@ public class Joueur {
         }
         else
         {
-            bonus = this.lances[indexDeFrameSuivante*2] + this.lances[indexDeFrameSuivante*2+1];
+            //System.out.println("score " + this.lances[indexDeFrameSuivante*2] + "score : "+this.lances[indexDeFrameSuivante*2+1]);
+            if(this.estUnStrikePourScore(this.lances[indexDeFrameSuivante*2+1]))
+            {
+                //System.out.println("le prochain frame est un strike frame "+ indexDeFrameSuivante);
+                bonus = 20;
+            }
+            else
+            {
+                bonus = this.lances[indexDeFrameSuivante*2] + this.lances[indexDeFrameSuivante*2+1];
+            }
+
+
         }
+        //System.out.println("bonus : "+bonus);
         return bonus;
     }
 
