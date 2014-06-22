@@ -9,6 +9,7 @@ public class Joueur {
     private int lanceCourant = 0;
     private String pseudo;
     private boolean partiejoueurTerminee = false;
+    private int scoreCourant = 0;
 
     public Joueur()
     {
@@ -30,18 +31,22 @@ public class Joueur {
             e.printStackTrace();
         }*/
         this.lances[lanceCourant] = nombreDeQuille;
+        System.out.println(this.pseudo+" lances et fait tomber "+nombreDeQuille+" quilles");
+        System.out.println(this.scoreCourant);
 
         if(nombreDeQuille == 10 && this.lanceCourant < 19)
             lanceCourant+=2;
         else
             lanceCourant++;
+
+        this.scoreCourant = this.score();
     }
 
     public int score()
     {
         for(int i = 0; i < this.lances.length; i++)
         {
-            System.out.println(this.lances[i]);
+            //System.out.println(this.lances[i]);
         }
         int score = 0;
         int scoreParFrame;
@@ -91,7 +96,7 @@ public class Joueur {
             score += this.lances[18];
             score += this.lances[19];
         }
-        System.out.println("debug: score apres dernier frame"+score);
+        //System.out.println("debug: score apres dernier frame"+score);
         return score;
     }
 
