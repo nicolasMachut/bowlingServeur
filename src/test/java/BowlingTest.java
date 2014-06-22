@@ -52,7 +52,7 @@ public class BowlingTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        assertEquals(2, this.bowling.getMeilleurePiste());
+        assertEquals(1, this.bowling.getMeilleurePiste().getNumero());
     }
 
 

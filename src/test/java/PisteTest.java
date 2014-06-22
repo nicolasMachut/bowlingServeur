@@ -111,31 +111,6 @@ public class PisteTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        assertEquals(30*60, this.piste.getTempsAttente());
+        assertEquals(400, this.piste.getTempsAttente());
     }
-
-
-    @Test
-    public void testTempsEcoule()
-    {
-        try {
-            this.piste.NouvellePartie();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        List<Joueur> equipe = new ArrayList<Joueur>();
-        equipe.add(new Joueur());
-        equipe.add(new Joueur());
-
-        try {
-            this.piste.ajoutDesJoueurs(equipe);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        equipe.get(1).lance(6);
-        assertEquals(30 * 60 - 5, piste.getTempsAttente());
-    }
-
-
 }
