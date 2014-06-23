@@ -10,7 +10,11 @@ public class Piste extends Thread{
 
 	private static int numeroEnCours = 0;
 	private int numero;
+	private Equipe equipe;
 
+	public Equipe getEquipe(){
+		return this.equipe;
+	}
 	public boolean isLibre() {
 		return libre;
 	}
@@ -74,7 +78,7 @@ public class Piste extends Thread{
 		}
 		else{
 			try {
-				throw new Exception("La piste est déjà occupée.");
+				throw new Exception("La piste est deja� occupee.");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -102,13 +106,13 @@ public class Piste extends Thread{
 		return this.joueurs.size();
 	}
 
-	public void ajoutDesJoueurs(List<Joueur> listeJoueur) throws Exception {
-		if (listeJoueur.size() > Bowling.nombreDeJoueursParPartie)
+	public void ajoutEquipe(Equipe equipe) throws Exception {
+		if (equipe.getJoueurs().size() > Bowling.nombreDeJoueursParPartie)
 		{
 			throw new Exception("Trop de joueurs sur cette piste, " + Bowling.nombreDeJoueursParPartie  +" au maximum.");
 		}
-
-		this.joueurs=listeJoueur;
+		this.equipe = equipe;
+		this.joueurs=equipe.getJoueurs();
 	
 	}
 

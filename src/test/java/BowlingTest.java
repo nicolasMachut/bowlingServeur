@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Serveur.Bowling;
+import Serveur.Equipe;
 import Serveur.Joueur;
 
 import java.util.ArrayList;
@@ -31,12 +32,13 @@ public class BowlingTest {
             e.printStackTrace();
         }
 
-        List<Joueur> equipe = new ArrayList<Joueur>();
-        equipe.add(new Joueur());
-        equipe.add(new Joueur());
-
+        Equipe equipe = new Equipe();
+        List<Joueur> joueurs = new ArrayList<Joueur>();
+        joueurs.add(new Joueur());
+        joueurs.add(new Joueur());
+        equipe.setJoueurs(joueurs);
         try {
-            this.bowling.getPistes()[0].ajoutDesJoueurs(equipe);
+            this.bowling.getPistes()[0].ajoutEquipe(equipe);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,7 +50,7 @@ public class BowlingTest {
         }
 
         try {
-            this.bowling.getPistes()[1].ajoutDesJoueurs(equipe);
+            this.bowling.getPistes()[1].ajoutEquipe(equipe);
         } catch (Exception e) {
             e.printStackTrace();
         }

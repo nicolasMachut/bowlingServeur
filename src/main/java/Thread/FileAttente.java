@@ -1,18 +1,22 @@
 package Thread;
 
 import Serveur.Bowling;
+import Serveur.Equipe;
 import Serveur.Joueur;
 import Serveur.Piste;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Queue;
 
 /**
  * Created by edouard on 21/06/14.
  */
 public class FileAttente extends Thread {
-        private Queue<List<Joueur>> waitingQueue = new ArrayDeque<List<Joueur>>();
+        private Queue<Equipe> waitingQueue = new ArrayDeque<Equipe>();
         private Bowling bowling;
         private int tempsAttenteFile = 0;
         final int tempsJeuJoueur = 15 * 60;
@@ -26,7 +30,7 @@ public class FileAttente extends Thread {
             Piste unePiste = bowling.getMeilleurePiste();
             if(unePiste.estLibre() && !waitingQueue.isEmpty()){
                 try {
-                    unePiste.ajoutDesJoueurs(waitingQueue.peek());
+                    unePiste.ajoutEquipe(waitingQueue.peek());
                     waitingQueue.poll();
                     unePiste.start();
                 } catch (Exception e) {
@@ -36,19 +40,19 @@ public class FileAttente extends Thread {
         }
     }
 
-    public String ajoutJoueursFileAttente(List<Joueur> team){
+    public String ajoutJoueursFileAttente(Equipe equipe){
     	int tempsAttenteEstime = 0;
     	int numeroPiste;
-        waitingQueue.add(team);
+        waitingQueue.add(equipe);
         if(bowling.getMeilleurePiste().getTempsAttente() > 0){
         	tempsAttenteEstime =  this.tempsAttenteFile + bowling.getMeilleurePiste().getTempsAttente();
         }
-        this.tempsAttenteFile += calculTempsJeuEstimeEquipe(team);
+        this.tempsAttenteFile += calculTempsJeuEstimeEquipe(equipe);
         return String.valueOf(tempsAttenteEstime) + "," + String.valueOf(bowling.getMeilleurePiste().getNumero());
        
     }
     
-    private int calculTempsJeuEstimeEquipe (List<Joueur> equipe){
-    	return tempsJeuJoueur * equipe.size();
+    private int calculTempsJeuEstimeEquipe (Equipe equipe){
+    	return tempsJeuJoueur * equipe.getJoueurs().size();
     }
 }

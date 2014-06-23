@@ -16,6 +16,10 @@ public class Joueur {
 
     }
 
+    public int getScoreCourant(){
+    	return this.scoreCourant;
+    }
+    
     public Joueur(String pseudo)
     {
         this.pseudo = pseudo;
@@ -32,7 +36,7 @@ public class Joueur {
         }
         this.lances[lanceCourant] = nombreDeQuille;
         System.out.println(this.pseudo+" lances et fait tomber "+nombreDeQuille+" quilles");
-        System.out.println(this.scoreCourant);
+        
 
         if(nombreDeQuille == 10 && this.lanceCourant < 19)
             lanceCourant+=2;
@@ -40,6 +44,7 @@ public class Joueur {
             lanceCourant++;
 
         this.scoreCourant = this.score();
+        System.out.println(this.scoreCourant);
     }
 
     public int score()

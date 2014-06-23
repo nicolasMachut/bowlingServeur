@@ -18,7 +18,7 @@ public class OuvertureBowling {
         System.out.println("ok2");
         waitingList.start();
         System.out.println("ok3");
-        threadReceptionJoueur receptionJoueur = new threadReceptionJoueur(waitingList);
+        threadReceptionJoueur receptionJoueur = new threadReceptionJoueur(waitingList,bowling);
         System.out.println("ok4");
         receptionJoueur.start();
         System.out.println("ok5");

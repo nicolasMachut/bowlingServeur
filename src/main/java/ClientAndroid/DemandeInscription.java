@@ -1,5 +1,6 @@
 package ClientAndroid;
 
+import envoiScores.threadEnvoiScoresPrxHelper;
 import receptionJoueurs.threadReceptionJoueursPrxHelper;
 
 public class DemandeInscription extends Ice.Application{
@@ -15,10 +16,18 @@ public class DemandeInscription extends Ice.Application{
 			if (receptionJoueur == null)
 				throw new Error("Invalid proxy");
 			
-			String[] equipe = new String[]{"Johan","Papa","Maman","oo","uuu","uuuu"};
+			String[] equipe = new String[]{"Johan"};
 			
 			System.out.println(receptionJoueur.inscriptionJoueur(equipe));
 			
+			Ice.ObjectPrx base1 = ic.stringToProxy("envoiScores :tcp -h 192.168.1.10 -p 10020");
+			envoiScores.threadEnvoiScoresPrx envoiScores = threadEnvoiScoresPrxHelper.checkedCast(base1);
+			if (receptionJoueur == null)
+				throw new Error("Invalid proxy");
+			
+			while(true){
+				System.out.println(envoiScores.getScores(0));
+			}
 		} catch (Ice.LocalException e) {
 			e.printStackTrace();
 			status = 1;
