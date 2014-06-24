@@ -5,9 +5,9 @@ import receptionJoueurs.threadReceptionJoueursPrxHelper;
 
 public class DemandeInscription extends Ice.Application{
 	
+	private int status;
 	@Override
 	public int run(String[] args) {
-		int status = 0;
 		Ice.Communicator ic = null;
 		try {
 			ic = Ice.Util.initialize(args);
@@ -22,7 +22,7 @@ public class DemandeInscription extends Ice.Application{
 			
 			Ice.ObjectPrx base1 = ic.stringToProxy("envoiScores :tcp -h 192.168.1.10 -p 10020");
 			envoiScores.threadEnvoiScoresPrx envoiScores = threadEnvoiScoresPrxHelper.checkedCast(base1);
-			if (receptionJoueur == null)
+			if (envoiScores == null)
 				throw new Error("Invalid proxy");
 			
 			while(true){

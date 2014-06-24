@@ -25,6 +25,7 @@ public class threadEnvoiScores extends _threadEnvoiScoresDisp {
 				scores = "0";
 			}
 		}
+		System.out.println("scores:::::::::" + scores);
 		return scores;
 	}
 
