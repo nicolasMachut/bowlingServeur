@@ -112,7 +112,8 @@ public class Piste extends Thread{
 			throw new Exception("Trop de joueurs sur cette piste, " + Bowling.nombreDeJoueursParPartie  +" au maximum.");
 		}
 		this.equipe = equipe;
-		this.joueurs=equipe.getJoueurs();
+		this.joueurs = equipe.getJoueurs();
+		this.libre = false;
 	
 	}
 

@@ -15,17 +15,20 @@ public class threadEnvoiScores extends _threadEnvoiScoresDisp {
 		this.bowling = bowling;
 	}
 	public String getScores(int identifiantEquipe, Current __current) {
-		String scores = null;
+		String scores = "0";
 		for (Piste piste : this.bowling.getPistes()){
-			if(piste.getEquipe().getIdentifiant() == identifiantEquipe){
-				for (Joueur joueur : piste.getJoueurs()){
-					scores = joueur.getPseudo() + ":" + joueur.getScoreCourant() + ",";				}
-			}
-			else{
-				scores = "0";
+			if (!piste.estLibre()){
+				if(piste.getEquipe().getIdentifiant() == identifiantEquipe){
+					scores = "";
+					System.out.println("passe" + scores);
+					for (Joueur joueur : piste.getJoueurs()){
+						scores = scores + joueur.getPseudo() + ": " + joueur.getScoreCourant() + " point(s),";				}
+				}
+				else{
+					System.out.println("passe pas" + scores);
+				}
 			}
 		}
-		System.out.println("scores:::::::::" + scores);
 		return scores;
 	}
 

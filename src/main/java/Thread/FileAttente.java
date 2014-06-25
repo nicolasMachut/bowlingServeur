@@ -27,7 +27,6 @@ public class FileAttente extends Thread {
                 try {
                     unePiste.ajoutEquipe(waitingQueue.peek());
                     waitingQueue.poll();
-                    unePiste.start();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -38,6 +37,7 @@ public class FileAttente extends Thread {
     public String ajoutJoueursFileAttente(Equipe equipe){
     	int tempsAttenteEstime = 0;
     	int numeroPiste;
+    	System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + equipe.getIdentifiant());
         waitingQueue.add(equipe);
         if(bowling.getMeilleurePiste().getTempsAttente() > 0){
         	tempsAttenteEstime =  this.tempsAttenteFile + bowling.getMeilleurePiste().getTempsAttente();
