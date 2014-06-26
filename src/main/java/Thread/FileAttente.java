@@ -10,44 +10,25 @@ import java.util.Queue;
 /**
  * Created by edouard on 21/06/14.
  */
-public class FileAttente extends Thread {
-        private Queue<Equipe> waitingQueue = new ArrayDeque<Equipe>();
-        private Bowling bowling;
-        private int tempsAttenteFile = 0;
-        final int tempsJeuJoueur = 15 * 60;
-    public FileAttente(Bowling bowling) {
-        super();
-        this.bowling = bowling;
-    }
+public class FileAttente  {
 
-    public void run(){
-        while (true){
-            Piste unePiste = bowling.getMeilleurePiste();
-            if(unePiste.estLibre() && !waitingQueue.isEmpty()){
-                try {
-                    unePiste.ajoutEquipe(waitingQueue.peek());
-                    waitingQueue.poll();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+	private Bowling bowling;
 
-    public String ajoutJoueursFileAttente(Equipe equipe){
-    	int tempsAttenteEstime = 0;
-    	int numeroPiste;
-    	System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + equipe.getIdentifiant());
-        waitingQueue.add(equipe);
-        if(bowling.getMeilleurePiste().getTempsAttente() > 0){
-        	tempsAttenteEstime =  this.tempsAttenteFile + bowling.getMeilleurePiste().getTempsAttente();
-        }
-        this.tempsAttenteFile += calculTempsJeuEstimeEquipe(equipe);
-        return String.valueOf(tempsAttenteEstime) + "," + String.valueOf(bowling.getMeilleurePiste().getNumero());
-       
-    }
-    
-    private int calculTempsJeuEstimeEquipe (Equipe equipe){
-    	return tempsJeuJoueur * equipe.getJoueurs().size();
-    }
+	public FileAttente(Bowling bowling) {
+		super();
+		this.bowling = bowling;
+	}
+
+	public String ajoutJoueursFileAttente(Equipe equipe){
+		String tempsAttente = null;
+		try {
+			tempsAttente = String.valueOf(this.bowling.getMeilleurePiste().ajoutEquipe(equipe) + "," + this.bowling.getMeilleurePiste().getNumero());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("ajouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuut");
+		return tempsAttente;
+	}
+
 }

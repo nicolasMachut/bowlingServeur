@@ -16,7 +16,6 @@ public class OuvertureBowling {
         System.out.println("ok1");
         FileAttente waitingList = new FileAttente(bowling);
         System.out.println("ok2");
-        waitingList.start();
         System.out.println("ok3");
         threadReceptionJoueur receptionJoueur = new threadReceptionJoueur(waitingList,bowling);
         System.out.println("ok4");
