@@ -21,8 +21,12 @@ public class FileAttente  {
 
 		public synchronized String ajoutJoueursFileAttente(Equipe equipe){
 		String tempsAttente = null;
+		Piste meilleurePiste;
 		try {
-			tempsAttente = String.valueOf(this.bowling.getMeilleurePiste().ajoutEquipe(equipe) + "," + this.bowling.getMeilleurePiste().getNumero());
+			
+			System.out.println("meilleure piste" + this.bowling.getMeilleurePiste().getNumero());
+			meilleurePiste = this.bowling.getMeilleurePiste();
+			tempsAttente = String.valueOf(meilleurePiste.ajoutEquipe(equipe) + "," + meilleurePiste.getNumero());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
