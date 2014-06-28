@@ -19,7 +19,7 @@ public class FileAttente  {
 		this.bowling = bowling;
 	}
 
-	public String ajoutJoueursFileAttente(Equipe equipe){
+		public synchronized String ajoutJoueursFileAttente(Equipe equipe){
 		String tempsAttente = null;
 		try {
 			tempsAttente = String.valueOf(this.bowling.getMeilleurePiste().ajoutEquipe(equipe) + "," + this.bowling.getMeilleurePiste().getNumero());
@@ -27,7 +27,6 @@ public class FileAttente  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("ajouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuut");
 		return tempsAttente;
 	}
 
