@@ -75,17 +75,12 @@ public class Piste extends Thread{
 
 	{
 		while(true){
-			System.out.println("ok1.1");
 			if(this.libre)
 			{
-				System.out.println("ok1.2");
 				if(!this.waitingQueue.isEmpty()){
-					System.out.println("ok1.3");
-					System.out.println(this.waitingQueue.size() + "siiiiiiiiiiiiiiiiiiiize");
 					this.equipe = this.waitingQueue.peek();
 					this.waitingQueue.poll();
 					this.joueurs = this.equipe.getJoueurs();
-					System.out.println(this.joueurs.get(0).getPseudo() +" joooooooooooooooooooooooooooo");
 					this.tempsAttenteFile -= this.equipe.getJoueurs().size() * this.dureePartieJoueur;
 					this.libre = false;
 				
